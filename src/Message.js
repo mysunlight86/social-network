@@ -1,6 +1,8 @@
+import './Message.css';
+
 const Message = (props) => {
     return (
-        <div>{props.text}</div>
+        <div className="message">{props.text}</div>
     );
 };
 

@@ -3,7 +3,7 @@ import Message from './Message';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Message text="Переданный текст" />
     </div>
   );
