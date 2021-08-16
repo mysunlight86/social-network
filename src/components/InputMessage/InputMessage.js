@@ -2,7 +2,7 @@ import './InputMessage.css';
 
 const InputMessage = (props) => {
     return (
-        <input
+        <textarea
           className="input-message"
           value={props.inputValue}
           onChange={(e) => props.onChangeMessage(e.target.value)}
