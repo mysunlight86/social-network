@@ -4,12 +4,10 @@ import Message from '../Message/Message';
 const MessageList = (props) => {
     return (
         <div className="message-list">
-        {props.list.map((message, i) => (
-          <div key={i}>
-            <Message text={message} />
-          </div>
-        ))}
-      </div>
+            {props.list.map((message, i) => (
+                <Message key={i} text={message.text} author={message.author} />
+            ))}
+        </div>
     );
 };
 

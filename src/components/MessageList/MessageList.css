@@ -5,4 +5,7 @@
     background-color: lavenderblush;
     box-sizing: border-box;
     padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }

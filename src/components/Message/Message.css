@@ -1,4 +1,30 @@
+.author-message {
+    font-size: 15px;
+    color: black;
+}
+
+.author-robot {
+    text-align: right;
+}
+
 .message {
-    color: blue;
     font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    width: 75%;
+}
+
+.user-message {
+    color: blue;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    width: 75%;
+}
+
+.robot-message {
+    color: mediumpurple;
+    text-align: right;
+    background-color: ghostwhite;
+    margin-left: auto;
 }

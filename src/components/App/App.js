@@ -8,7 +8,7 @@ function App() {
   const [messageList, setMessageList] = useState([]);
 
   const onSendMessage = () => {
-    setMessageList((prev) => [...prev, inputMessage]);
+    setMessageList((prev) => [...prev, {text: inputMessage, author: 'user'}, {text: inputMessage, author: 'robot'}]);
     setInputMessage("");
   };
 
