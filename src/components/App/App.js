@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './App.css';
 import InputMessage from '../InputMessage/InputMessage';
 import MessageList from '../MessageList/MessageList';
@@ -8,9 +8,23 @@ function App() {
   const [messageList, setMessageList] = useState([]);
 
   const onSendMessage = () => {
-    setMessageList((prev) => [...prev, {text: inputMessage, author: 'user'}, {text: inputMessage, author: 'robot'}]);
+    setMessageList((prev) => [...prev, {text: inputMessage, author: 'user'}]);
     setInputMessage("");
   };
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setMessageList((prev) => {
+        if (prev.length && prev[prev.length-1].author !== 'robot') {
+          return [...prev, {text: prev[prev.length-1].text, author: 'robot'}];
+        }
+        return prev;
+      });
+
+      return (() => clearTimeout(timerId));
+    }, 1500);
+
+  }, [messageList]);
 
   return (
     <div className="app">
