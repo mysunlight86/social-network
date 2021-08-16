@@ -1,6 +1,7 @@
 .author-message {
     font-size: 15px;
-    color: black;
+    color: lightsteelblue;
+    margin: 0 10px;
 }
 
 .author-robot {
@@ -12,10 +13,10 @@
     padding: 5px 10px;
     border-radius: 10px;
     width: 75%;
+    color: mediumpurple;
 }
 
 .user-message {
-    color: blue;
     background-color: white;
     padding: 5px 10px;
     border-radius: 10px;
@@ -23,7 +24,6 @@
 }
 
 .robot-message {
-    color: mediumpurple;
     text-align: right;
     background-color: ghostwhite;
     margin-left: auto;
