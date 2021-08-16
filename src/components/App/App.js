@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './App.css';
-import Message from '../Message/Message';
 import InputMessage from '../InputMessage/InputMessage';
+import MessageList from '../MessageList/MessageList';
 
 function App() {
   const [inputMessage, setInputMessage] = useState("");
@@ -14,13 +14,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="message-list">
-        {messageList.map((message, i) => (
-          <div key={i}>
-            <Message text={message} />
-          </div>
-        ))}
-      </div>
+      <MessageList list={messageList} />
 
       <div className="input-wrapper">
         <InputMessage inputValue={inputMessage} onChangeMessage={setInputMessage} onSendMessage={onSendMessage} />
