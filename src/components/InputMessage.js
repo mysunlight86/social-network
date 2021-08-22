@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     border: 'none',
     outline: 'none',
     borderRadius: '10px',
-    width: '300px',
+    width: '60%',
     color: 'mediumpurple',
     fontWeight: 'bold',
   },

@@ -2,20 +2,29 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputMessage from './InputMessage';
 import MessageList from './MessageList';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(() => ({
   app: {
     margin: '0 auto',
-    width: '600px',
+    width: '800px',
     height: '800px',
     border: '1px solid lightsteelblue',
     display: 'flex',
-    flexDirection: 'column',
+    justifyContent: 'space-between',
     boxShadow: 'lightsteelblue 2px 2px 5px',
+  },
+  chatList: {
+    width: '100%',
+  },
+  chat: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   inputWrapper: {
     flex: '1',
-    width: '100%',
+    width: '500px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -38,15 +47,15 @@ function App() {
   const [messageList, setMessageList] = useState([]);
 
   const onSendMessage = () => {
-    setMessageList((prev) => [...prev, {text: inputMessage, author: 'user'}]);
+    setMessageList((prev) => [...prev, { text: inputMessage, author: 'user' }]);
     setInputMessage("");
   };
 
   useEffect(() => {
     const timerId = setTimeout(() => {
       setMessageList((prev) => {
-        if (prev.length && prev[prev.length-1].author !== 'robot') {
-          return [...prev, {text: prev[prev.length-1].text, author: 'robot'}];
+        if (prev.length && prev[prev.length - 1].author !== 'robot') {
+          return [...prev, { text: prev[prev.length - 1].text, author: 'robot' }];
         }
         return prev;
       });
@@ -58,11 +67,21 @@ function App() {
 
   return (
     <div className={classes.app}>
-      <MessageList list={messageList} />
+      <div className={classes.chatList}>
+        <MenuList>
+          <MenuItem>Chat 1</MenuItem>
+          <MenuItem>Chat 2</MenuItem>
+          <MenuItem>Chat 3</MenuItem>
+        </MenuList>
+      </div>
 
-      <div className={classes.inputWrapper}>
-        <InputMessage inputValue={inputMessage} onChangeMessage={setInputMessage} onSendMessage={onSendMessage} />
-        <button onClick={onSendMessage} className={classes.buttonSend}>Отправить</button>
+      <div className={classes.chat}>
+        <MessageList list={messageList} />
+
+        <div className={classes.inputWrapper}>
+          <InputMessage inputValue={inputMessage} onChangeMessage={setInputMessage} onSendMessage={onSendMessage} />
+          <button onClick={onSendMessage} className={classes.buttonSend}>Отправить</button>
+        </div>
       </div>
     </div>
   );
