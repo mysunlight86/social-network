@@ -18,6 +18,7 @@ const InputMessage = ({ inputValue, onChangeMessage, onSendMessage }) => {
 
   return (
     <textarea
+      autoFocus={true}
       className={classes.inputMessage}
       value={inputValue}
       onChange={(e) => onChangeMessage(e.target.value)}
