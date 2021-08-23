@@ -43,6 +43,10 @@ const useStyles = makeStyles(() => ({
       color: 'mediumpurple',
       borderRadius: '10px',
       padding: '7px 15px',
+    },
+    chatItem: {
+        color: 'mediumpurple',
+        padding: '10px 0'
     }
   }));
 
@@ -75,7 +79,7 @@ const Chat = () => {
             <div className={classes.chatList}>
                 <MenuList>
                     {chats.map((chat) => (
-                        <MenuItem key={chat.id}>{chat.name}</MenuItem>
+                        <MenuItem key={chat.id} className={classes.chatItem}>{chat.name}</MenuItem>
                     ))}
                 </MenuList>
             </div>
