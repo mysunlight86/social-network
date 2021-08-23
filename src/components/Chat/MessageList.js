@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import Message from './Message';
 
 const useStyles = makeStyles(() => ({
