@@ -5,6 +5,21 @@ import MessageList from './MessageList';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
+const chats = [
+  {
+    id: 0,
+    name: 'Chat 1',
+  },
+  {
+    id: 1,
+    name: 'Chat 2',
+  },
+  {
+    id: 2,
+    name: 'Chat 3',
+  },
+];
+
 const useStyles = makeStyles(() => ({
   app: {
     margin: '0 auto',
@@ -69,9 +84,9 @@ function App() {
     <div className={classes.app}>
       <div className={classes.chatList}>
         <MenuList>
-          <MenuItem>Chat 1</MenuItem>
-          <MenuItem>Chat 2</MenuItem>
-          <MenuItem>Chat 3</MenuItem>
+          {chats.map((chat) => (
+            <MenuItem key={chat.id}>{chat.name}</MenuItem>
+          ))}
         </MenuList>
       </div>
 
