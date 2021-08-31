@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Chat from './Chat/Chat';
 import Home from './Home';
 import Menu from './Menu';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
 
 const useStyles = makeStyles(() => ({
   app: {
