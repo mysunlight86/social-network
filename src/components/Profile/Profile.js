@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { editName } from './profileSlice';
 
@@ -9,16 +10,25 @@ const Profile = () => {
         e.preventDefault();
     };
 
-    const onEditName = (newName) => {
+    const onEditName = (e) => {
+        const newName = e.target.value;
         dispatch(editName(newName));
-      };
+    };
+
+    useEffect(() => {
+        if (userName) {
+            setTimeout(() => {
+                console.log(userName);
+            }, 1000);
+        }
+    }, [userName]);
 
     return (
         <>
             <div>Профиль</div>
             <div>{userName}</div>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={userName} onChange={onEditName}></input>
+                <input type="text" value={userName} onInput={onEditName}></input>
                 <input type="submit"></input>
             </form>
         </>
