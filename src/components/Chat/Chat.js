@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
 const Chat = () => {
   const classes = useStyles();
   const { chats } = useSelector((state) => state.chat);
-  const [chatId, setChatId] = useState(0);
+  const [chatId, setChatId] = useState(2);
 
   return (
     <>

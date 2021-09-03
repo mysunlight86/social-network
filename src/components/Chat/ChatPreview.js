@@ -3,7 +3,6 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     chatActive: {
@@ -51,10 +50,6 @@ const useStyles = makeStyles((theme) => ({
 const ChatPreview = ({ chat, chatIdActive }) => {
     const classes = useStyles();
     const history = useHistory();
-    const urlParams = useParams();
-    const chatId = Number.parseInt(urlParams.id);
-    console.log('urlParams ', urlParams);
-    console.log('chatId ', chatId);
 
     const { avatarUrl, name, messagesArray, id } = chat;
 

@@ -2,7 +2,7 @@ import InputMessage from './InputMessage';
 import MessageList from './MessageList';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from './chatSlice';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -35,24 +35,31 @@ const ChatWindow = ({ setChatId }) => {
     const dispatch = useDispatch();
     const urlParams = useParams();
     const chatId = Number.parseInt(urlParams.id);
-    setChatId(chatId);
-    console.log('urlParams ', urlParams);
-    console.log('chatId ', chatId);
+    // setChatId(chatId);
     const { chats } = useSelector((state) => state.chat);
-    console.log('chats ', chats);
     const messageList = chats.find((chat) => chat.id === chatId).messagesArray;
 
     const onSendMessage = () => {
         dispatch(addMessage({ chatId, inputMessage }));
-        setInputMessage("");
+        // setInputMessage("");
     };
+
+    useEffect(() => {
+        // const urlParams = useParams();
+        // const chatId = Number.parseInt(urlParams.id);
+        setChatId(chatId);
+    });
 
     return (
         <div className={classes.chat}>
             <MessageList list={messageList} />
 
             <div className={classes.inputWrapper}>
-                <InputMessage inputValue={inputMessage} onChangeMessage={setInputMessage} onSendMessage={onSendMessage} />
+                <InputMessage 
+                inputValue={inputMessage} 
+                onChangeMessage={setInputMessage} 
+                onSendMessage={onSendMessage} 
+                />
                 <button onClick={onSendMessage} className={classes.buttonSend}>Отправить</button>
             </div>
         </div>

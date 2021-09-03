@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
     message: {
@@ -38,11 +37,6 @@ const Message = ({ message }) => {
     return (
         <div className={`${classes.message} ${message.userId === myId ? classes.userMessage : classes.robotMessage}`}>{message.text}</div>
     );
-};
-
-Message.propTypes = {
-    text: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
 };
 
 export default Message;
