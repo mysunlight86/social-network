@@ -2,14 +2,11 @@ import InputMessage from './InputMessage';
 import MessageList from './MessageList';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from './chatSlice';
-import React, { useState, useEffect } from 'react';
-import { Switch, Route, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-    chatList: {
-        width: '100%',
-    },
     chat: {
         display: 'flex',
         flexDirection: 'column',
@@ -30,18 +27,15 @@ const useStyles = makeStyles(() => ({
         borderRadius: '10px',
         padding: '7px 15px',
     },
-    chatItem: {
-        color: 'mediumpurple',
-        padding: '10px 0'
-    }
 }));
 
-const ChatWindow = () => {
+const ChatWindow = ({ setChatId }) => {
     const classes = useStyles();
     const [inputMessage, setInputMessage] = useState('');
     const dispatch = useDispatch();
     const urlParams = useParams();
     const chatId = Number.parseInt(urlParams.id);
+    setChatId(chatId);
     console.log('urlParams ', urlParams);
     console.log('chatId ', chatId);
     const { chats } = useSelector((state) => state.chat);
@@ -49,8 +43,6 @@ const ChatWindow = () => {
     const messageList = chats.find((chat) => chat.id === chatId).messagesArray;
 
     const onSendMessage = () => {
-        // setMessageList((prev) => [...prev, { text: inputMessage, author: 'user' }]);
-        // dispatch(addMessage({ author: "me", inputMessage }));
         dispatch(addMessage({ chatId, inputMessage }));
         setInputMessage("");
     };

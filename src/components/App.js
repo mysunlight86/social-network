@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     boxShadow: 'lightsteelblue 2px 2px 5px',
     position: 'relative',
-    padding: '85px 20px 20px 0',
+    padding: '85px 20px 20px',
   }
 }));
 

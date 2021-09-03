@@ -36,10 +36,7 @@ const Message = ({ message }) => {
     const { myId } = useSelector((state) => state.chat);
 
     return (
-        <>
-            {/* <span className={`${classes.authorMessage} ${message.userId !== myId ? classes.authorRobot : ''}`}>{chat.name}</span> */}
-            <div className={`${classes.message} ${message.userId === myId ? classes.userMessage : classes.robotMessage}`}>{message.text}</div>
-        </>
+        <div className={`${classes.message} ${message.userId === myId ? classes.userMessage : classes.robotMessage}`}>{message.text}</div>
     );
 };
 
