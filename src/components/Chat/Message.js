@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
@@ -30,13 +31,14 @@ const useStyles = makeStyles(() => ({
     
 }));
 
-const Message = ({ text, author }) => {
+const Message = ({ message }) => {
     const classes = useStyles();
+    const { myId } = useSelector((state) => state.chat);
 
     return (
         <>
-            <span className={`${classes.authorMessage} ${author === 'robot' ? classes.authorRobot : ''}`}>{author}</span>
-            <div className={`${classes.message} ${author === 'user' ? classes.userMessage : classes.robotMessage}`}>{text}</div>
+            {/* <span className={`${classes.authorMessage} ${message.userId !== myId ? classes.authorRobot : ''}`}>{chat.name}</span> */}
+            <div className={`${classes.message} ${message.userId === myId ? classes.userMessage : classes.robotMessage}`}>{message.text}</div>
         </>
     );
 };

@@ -1,3 +1,4 @@
+// import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Message from './Message';
@@ -18,11 +19,13 @@ const useStyles = makeStyles(() => ({
 
 const MessageList = ({ list }) => {
     const classes = useStyles();
+    // const { myId } = useSelector((state) => state.chat);
 
     return (
         <div className={classes.messageList}>
             {list.map((message, i) => (
-                <Message key={i} text={message.text} author={message.author} />
+                // <Message key={i} text={message.text} author={message.author} />
+                <Message key={i} message={message} />
             ))}
         </div>
     );

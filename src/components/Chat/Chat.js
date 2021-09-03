@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from "react-router-dom";
-import InputMessage from './InputMessage';
-import MessageList from './MessageList';
+import { Switch, Route, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// import { addMessage } from './chatSlice';
 import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import InputMessage from './InputMessage';
+// import MessageList from './MessageList';
+import ChatPreview from './ChatPreview';
+import ChatWindow from './ChatWindow';
 import { makeStyles } from '@material-ui/core/styles';
 
-const chats = [
-  {
-    id: 0,
-    name: 'Chat 1',
-  },
-  {
-    id: 1,
-    name: 'Chat 2',
-  },
-  {
-    id: 2,
-    name: 'Chat 3',
-  },
-];
+// const chats = [
+//   {
+//     id: 0,
+//     name: 'Chat 1',
+//   },
+//   {
+//     id: 1,
+//     name: 'Chat 2',
+//   },
+//   {
+//     id: 2,
+//     name: 'Chat 3',
+//   },
+// ];
 
 const useStyles = makeStyles(() => ({
   chatList: {
-    width: '100%',
+    width: '40%',
   },
   chat: {
     display: 'flex',
@@ -53,50 +57,80 @@ const useStyles = makeStyles(() => ({
 
 const Chat = () => {
   const classes = useStyles();
-  const [inputMessage, setInputMessage] = useState('');
-  const [messageList, setMessageList] = useState([]);
+  // const [inputMessage, setInputMessage] = useState('');
+  // const [messageList, setMessageList] = useState([]);
+  // const { messageList } = useSelector((state) => state.chat);
+  // const urlParams = useParams();
+  // const chatId = Number.parseInt(urlParams.id);
+  // console.log('urlParams ', urlParams);
+  // console.log('chatId ', chatId);
+  const { chats } = useSelector((state) => state.chat);
+  // console.log('chats ', chats);
+  // const messageList = chats.find((chat) => chat.id === chatId).messagesArray;
 
-  const onSendMessage = () => {
-    setMessageList((prev) => [...prev, { text: inputMessage, author: 'user' }]);
-    setInputMessage("");
-  };
+  // const dispatch = useDispatch();
+  // const { chats } = useSelector((state) => state.chat);
 
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setMessageList((prev) => {
-        if (prev.length && prev[prev.length - 1].author !== 'robot') {
-          return [...prev, { text: prev[prev.length - 1].text, author: 'robot' }];
-        }
-        return prev;
-      });
+  // const onSendMessage = () => {
+  //   // setMessageList((prev) => [...prev, { text: inputMessage, author: 'user' }]);
+  //   // dispatch(addMessage({ author: "me", inputMessage }));
+  //   dispatch(addMessage({ chatId, inputMessage }));
+  //   setInputMessage("");
+  // };
 
-      return (() => clearTimeout(timerId));
-    }, 1500);
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     setMessageList((prev) => {
+  //       if (prev.length && prev[prev.length - 1].author !== 'robot') {
+  //         return [...prev, { text: prev[prev.length - 1].text, author: 'robot' }];
+  //       }
+  //       return prev;
+  //     });
 
-  }, [messageList]);
+  //     return (() => clearTimeout(timerId));
+  //   }, 1500);
+
+  // }, [messageList]);
+
+  // useEffect(() => {
+  //   if (messageList.length > 0) {
+  //     setTimeout(() => {
+  //       console.log("Message was sent");
+  //     }, 1000);
+  //   }
+  // }, [messageList]);
 
   return (
     <>
       <div className={classes.chatList}>
         <MenuList>
-          {chats.map((chat) => (
+          {/* {chats.map((chat) => (
             <MenuItem key={chat.id} className={classes.chatItem}>{chat.name}</MenuItem>
+          ))} */}
+          {chats.map((chat, i) => (
+            <ChatPreview key={i} chat={chat} />
           ))}
+          {/* {chats.map((chat, i) => (
+            <MenuItem key={i} className={classes.chatItem}>
+              <ChatPreview key={i} chat={chat} />
+            </MenuItem>
+          ))} */}
         </MenuList>
       </div>
 
       <Switch>
-          <Route path="/chat/:id">
-            <div className={classes.chat}>
-              <MessageList list={messageList} />
+        <Route path="/chat/:id">
+          {/* <div className={classes.chat}>
+            <MessageList list={messageList} />
 
-              <div className={classes.inputWrapper}>
-                <InputMessage inputValue={inputMessage} onChangeMessage={setInputMessage} onSendMessage={onSendMessage} />
-                <button onClick={onSendMessage} className={classes.buttonSend}>Отправить</button>
-              </div>
+            <div className={classes.inputWrapper}>
+              <InputMessage inputValue={inputMessage} onChangeMessage={setInputMessage} onSendMessage={onSendMessage} />
+              <button onClick={onSendMessage} className={classes.buttonSend}>Отправить</button>
             </div>
-          </Route>
-        </Switch>
+          </div> */}
+          <ChatWindow />
+        </Route>
+      </Switch>
     </>
   );
 };

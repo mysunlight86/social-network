@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     borderRadius: "20px",
     cursor: "pointer",
+    boxSizing: "border-box",
 
     "&:hover": {
       backgroundColor: "#F1F1F1",

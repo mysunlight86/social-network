@@ -13,7 +13,6 @@ export const profileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { editName } =
-profileSlice.actions;
+export const { editName } = profileSlice.actions;
 
 export default profileSlice.reducer;
