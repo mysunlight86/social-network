@@ -35,18 +35,15 @@ const ChatWindow = ({ setChatId }) => {
     const dispatch = useDispatch();
     const urlParams = useParams();
     const chatId = Number.parseInt(urlParams.id);
-    // setChatId(chatId);
     const { chats } = useSelector((state) => state.chat);
     const messageList = chats.find((chat) => chat.id === chatId).messagesArray;
 
     const onSendMessage = () => {
         dispatch(addMessage({ chatId, inputMessage }));
-        // setInputMessage("");
+        setInputMessage("");
     };
 
     useEffect(() => {
-        // const urlParams = useParams();
-        // const chatId = Number.parseInt(urlParams.id);
         setChatId(chatId);
     });
 

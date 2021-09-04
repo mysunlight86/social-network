@@ -65,10 +65,6 @@ export const chatSlice = createSlice({
       const chatIndex = state.chats.findIndex((chat) => chat.id === chatId);
       const chat = state.chats[chatIndex];
 
-      console.log(chat);
-      console.log(chatId);
-      console.log(chatIndex);
-
       const newChats = [...state.chats];
 
       newChats.splice(chatIndex, 1);
@@ -88,15 +84,6 @@ export const chatSlice = createSlice({
           ],
         },
       ];
-
-      console.log(chatIndex);
-
-      // state.chats[chatIndex].messagesArray.push({
-      //   text: messageText,
-      //   timeStamp: new moment(),
-      //   isRead: false,
-      //   userId: state.myId,
-      // });
     },
   },
 });
