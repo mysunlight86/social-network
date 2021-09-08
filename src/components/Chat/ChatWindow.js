@@ -41,11 +41,12 @@ const ChatWindow = ({ setChatId }) => {
     const sendMessageWithThunk = ({ chatId, inputMessage }) => (dispatch, getState) => {
         const { chat } = getState();
         const myId = chat.myId;
-        dispatch(addMessage({ chatId, inputMessage }));
+        dispatch(addMessage({ chatId, inputMessage, userId: myId }));
         if (chatId !== myId) {
             const botMessage = {
                 chatId,
-                inputMessage
+                inputMessage,
+                userId: chatId,
             };
             setTimeout(() => dispatch(addMessage(botMessage)), 1500);
         }
