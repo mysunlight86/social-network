@@ -38,8 +38,22 @@ const ChatWindow = ({ setChatId }) => {
     const { chats } = useSelector((state) => state.chat);
     const messageList = chats.find((chat) => chat.id === chatId).messagesArray;
 
+    const sendMessageWithThunk = ({ chatId, inputMessage }) => (dispatch, getState) => {
+        const { chat } = getState();
+        const myId = chat.myId;
+        dispatch(addMessage({ chatId, inputMessage, userId: myId }));
+        if (chatId !== myId) {
+            const botMessage = {
+                chatId,
+                inputMessage,
+                userId: chatId,
+            };
+            setTimeout(() => dispatch(addMessage(botMessage)), 1500);
+        }
+    };
+
     const onSendMessage = () => {
-        dispatch(addMessage({ chatId, inputMessage }));
+        dispatch(sendMessageWithThunk({ chatId, inputMessage }));
         setInputMessage("");
     };
 
@@ -52,10 +66,10 @@ const ChatWindow = ({ setChatId }) => {
             <MessageList list={messageList} />
 
             <div className={classes.inputWrapper}>
-                <InputMessage 
-                inputValue={inputMessage} 
-                onChangeMessage={setInputMessage} 
-                onSendMessage={onSendMessage} 
+                <InputMessage
+                    inputValue={inputMessage}
+                    onChangeMessage={setInputMessage}
+                    onSendMessage={onSendMessage}
                 />
                 <button onClick={onSendMessage} className={classes.buttonSend}>Отправить</button>
             </div>
