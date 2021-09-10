@@ -1,22 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getNumberFact } from './actions'
-// import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { makeStyles } from "@material-ui/core/styles";
 
-// const useStyles = makeStyles((theme) => ({
-//     number: {
-//         fontWeight: 'bold',
-//         fontSize: '32px',
-//     },
-// }));
+const useStyles = makeStyles((theme) => ({
+    numberText: {
+        fontWeight: 'bold',
+        fontSize: '20px',
+    },
+}));
 
 const Number = () => {
-    // const classes = useStyles();
+    const classes = useStyles();
     const [number, setNumber] = useState('');
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state.number);
-
-    console.log(data, loading, error);
 
     const getThunkNumberFact = useCallback(
         () => dispatch(getNumberFact(number)),
@@ -29,23 +28,26 @@ const Number = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
-        console.log(number);
     };
 
     const onEditValue = (e) => {
         setNumber(e.target.value);
     };
 
-    // console.log(number);
-
     return (
         <div>
-            <div>Введите число и получите информацию связанную с этим числом</div>
-            <blockquote>
-                {/* <span className={classes.number}>{number}</span> */}
-                {data}
-            </blockquote>
+            <div>Введите число от 1 до 100 и получите информацию связанную с этим числом</div>
+
+            {loading && <CircularProgress />}
+            {error && <div>Возникла ошибка</div>}
+
+            {!loading && !error && data && (
+                <blockquote className={classes.numberText}>
+                    {/* <span className={classes.number}>{number}</span> */}
+                    {data}
+                </blockquote>
+            )}
+
             <form onSubmit={handleSubmit}>
                 {/* <input type="text" value={number} onInput={onEditValue}></input> */}
                 <input type="text" value={number} onInput={onEditValue}></input>
