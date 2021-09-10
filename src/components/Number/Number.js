@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getNumberFact } from './actions'
 // import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
@@ -8,11 +10,22 @@ import React, { useState } from 'react';
 //     },
 // }));
 
-const numberFact = '';
-
 const Number = () => {
     // const classes = useStyles();
-    const [number, setNumber] = useState(0);
+    const [number, setNumber] = useState('');
+    const dispatch = useDispatch();
+    const { data, loading, error } = useSelector((state) => state.number);
+
+    console.log(data, loading, error);
+
+    const getThunkNumberFact = useCallback(
+        () => dispatch(getNumberFact(number)),
+        [dispatch, number]
+    );
+
+    useEffect(() => {
+        getThunkNumberFact();
+    }, [getThunkNumberFact]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,11 +44,12 @@ const Number = () => {
             <div>Введите число и получите информацию связанную с этим числом</div>
             <blockquote>
                 {/* <span className={classes.number}>{number}</span> */}
-                {numberFact}
+                {data}
             </blockquote>
             <form onSubmit={handleSubmit}>
+                {/* <input type="text" value={number} onInput={onEditValue}></input> */}
                 <input type="text" value={number} onInput={onEditValue}></input>
-                <input type="submit"></input>
+                {/* <input type="submit"></input> */}
             </form>
         </div>
     );
