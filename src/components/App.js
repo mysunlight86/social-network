@@ -4,6 +4,7 @@ import Chat from './Chat/Chat';
 import Home from './Home';
 import Menu from './Menu';
 import Profile from './Profile/Profile';
+import Number from './Number/Number';
 
 const useStyles = makeStyles(() => ({
   app: {
@@ -26,19 +27,23 @@ const App = () => {
       <div className={classes.app}>
         <Menu />
 
-          <Switch>
-            <Route path="/chat">
-              <Chat />
-            </Route>
+        <Switch>
+          <Route path="/chat">
+            <Chat />
+          </Route>
 
-            <Route path="/profile">
-              <Profile />
-            </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
 
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
+          <Route path="/number">
+            <Number />
+          </Route>
+
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </div>
     </BrowserRouter>
   );
